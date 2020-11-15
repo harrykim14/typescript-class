@@ -72,4 +72,4 @@ function getShoppingItemOption<T extends keyof ShoppingItem>(itemOption: T): T {
 
 // getShoppingItemOption(10);
 // getShoppingItemOption();
-getShoppingItemOptionn("name");
+getShoppingItemOption('name');
