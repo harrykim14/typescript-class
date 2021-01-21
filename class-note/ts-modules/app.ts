@@ -1,4 +1,4 @@
-import {exampleModule} from './module';
+import {exampleModule} from './module.ts';
 
 var importedModule: exampleModule = {
     name: '예제 모듈',
