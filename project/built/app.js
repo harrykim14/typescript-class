@@ -70,6 +70,12 @@ function fetchCovidSummary() {
     var url = 'https://api.covid19api.com/summary';
     return axios.get(url);
 }
+var CovidStatus;
+(function (CovidStatus) {
+    CovidStatus["Confirmed"] = "confirmed";
+    CovidStatus["Recovered"] = "recovered";
+    CovidStatus["Deaths"] = "deaths";
+})(CovidStatus || (CovidStatus = {}));
 function fetchCountryInfo(countryCode, status) {
     // params: confirmed, recovered, deaths
     var url = "https://api.covid19api.com/country/" + countryCode + "/status/" + status;
@@ -104,13 +110,13 @@ function handleListClick(event) {
                     clearRecoveredList();
                     startLoadingAnimation();
                     isDeathLoading = true;
-                    return [4 /*yield*/, fetchCountryInfo(selectedId, 'deaths')];
+                    return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Deaths)];
                 case 1:
                     deathResponse = (_a.sent()).data;
-                    return [4 /*yield*/, fetchCountryInfo(selectedId, 'recovered')];
+                    return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Recovered)];
                 case 2:
                     recoveredResponse = (_a.sent()).data;
-                    return [4 /*yield*/, fetchCountryInfo(selectedId, 'confirmed')];
+                    return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Confirmed)];
                 case 3:
                     confirmedResponse = (_a.sent()).data;
                     console.log(confirmedResponse);

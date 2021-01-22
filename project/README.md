@@ -15,7 +15,7 @@
         > **compilerOptions & include**
     - [x] js파일을 ts파일로 변환하기 
         > **app.js 파일을 app.ts로 변경**
-    - [x] tsc 명령어로 ts 컴파일 하기
+    - [x] `tsc` 명령어로 ts 컴파일 하기
         > **런타임 에러와 타입 에러는 별도의 에러**
 
 2. 에러를 처리해보기
@@ -24,7 +24,9 @@
     - [x] async await (ES2015) 관련 에러 처리하기
         > **"lib"에 "ES2015" 추가**
 
-
+3. 명시적인 `any` 선언하기
+    - [x] `tscongif.json` 파일에 `noImplicitAny` 값을 `true`로 추가
+        > **일단은 코드를 이해하기 전에 오류를 해결한다는 자세로 접근**
 
 
 ## 참고 자료
