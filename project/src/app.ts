@@ -1,3 +1,9 @@
+// library
+import axios, { AxiosResponse } from 'axios';
+import * as Chart from 'chart.js';
+// 'esModuleInterop' 플래그를 사용하는 가져온 기본값이어야만 합니다 -> 이 오류는 import 할 때 별칭으로 불러와야 한다 * as ~~
+import { CovidSummaryResponse } from './covid/index';
+
 // utils
 function $(selector: string) {
   return document.querySelector(selector);
@@ -37,10 +43,12 @@ let isDeathLoading = false;
 const isRecoveredLoading = false;
 
 // api
-function fetchCovidSummary() {
+function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
   const url = 'https://api.covid19api.com/summary';
   return axios.get(url);
 }
+
+// fetchCovidSummary().then(res => res.data.)
 
 enum CovidStatus {
   Confirmed = 'confirmed',

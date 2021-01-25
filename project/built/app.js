@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+// library
+var axios_1 = require("axios");
+var Chart = require("chart.js");
+// 'esModuleInterop' 플래그를 사용하는 가져온 기본값이어야만 합니다 -> 이 오류는 import 할 때 별칭으로 불러와야 한다 * as ~~
 // utils
 function $(selector) {
     return document.querySelector(selector);
@@ -68,7 +74,7 @@ var isRecoveredLoading = false;
 // api
 function fetchCovidSummary() {
     var url = 'https://api.covid19api.com/summary';
-    return axios.get(url);
+    return axios_1.default.get(url);
 }
 var CovidStatus;
 (function (CovidStatus) {
@@ -79,7 +85,7 @@ var CovidStatus;
 function fetchCountryInfo(countryCode, status) {
     // params: confirmed, recovered, deaths
     var url = "https://api.covid19api.com/country/" + countryCode + "/status/" + status;
-    return axios.get(url);
+    return axios_1.default.get(url);
 }
 // methods
 function startApp() {
@@ -236,7 +242,9 @@ function setChartData(data) {
     var chartData = data.slice(-14).map(function (value) { return value.Cases; });
     var chartLabel = data
         .slice(-14)
-        .map(function (value) { return new Date(value.Date).toLocaleDateString().slice(5, -1); });
+        .map(function (value) {
+        return new Date(value.Date).toLocaleDateString().slice(5, -1);
+    });
     renderChart(chartData, chartLabel);
 }
 function setTotalConfirmedNumber(data) {
