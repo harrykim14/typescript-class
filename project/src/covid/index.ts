@@ -28,7 +28,7 @@ export interface CovidSummaryResponse {
   Message: string;
 }
 
-interface ContrySummaryInfo {
+export interface ContrySummaryInfo {
   Cases: number;
   City: string;
   CityCode: string;

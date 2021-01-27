@@ -132,10 +132,10 @@ var __generator =
       return { value: op[0] ? op[1] : void 0, done: true };
     }
   };
-// Object.defineProperty(exports, '__esModule', { value: true });
-// // library
-// var axios_1 = require('axios');
-// var Chart = require('chart.js');
+Object.defineProperty(exports, '__esModule', { value: true });
+// library
+var axios_1 = require('axios');
+var Chart = require('chart.js');
 // utils
 function $(selector) {
   return document.querySelector(selector);
@@ -169,7 +169,7 @@ function createSpinnerElement(id) {
 }
 // state
 var isDeathLoading = false;
-var isRecoveredLoading = false;
+// const isRecoveredLoading = false;
 // api
 function fetchCovidSummary() {
   var url = 'https://api.covid19api.com/summary';
@@ -258,7 +258,7 @@ function setDeathsList(data) {
     var li = document.createElement('li');
     li.setAttribute('class', 'list-item-b flex align-center');
     var span = document.createElement('span');
-    span.textContent = value.Cases;
+    span.textContent = value.Cases.toString();
     span.setAttribute('class', 'deaths');
     var p = document.createElement('p');
     p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
@@ -271,7 +271,7 @@ function clearDeathList() {
   deathsList.innerHTML = null;
 }
 function setTotalDeathsByCountry(data) {
-  deathsTotal.innerText = data[0].Cases;
+  deathsTotal.innerText = data[0].Cases.toString();
 }
 function setRecoveredList(data) {
   var sorted = data.sort(function (a, b) {
@@ -281,7 +281,7 @@ function setRecoveredList(data) {
     var li = document.createElement('li');
     li.setAttribute('class', 'list-item-b flex align-center');
     var span = document.createElement('span');
-    span.textContent = value.Cases;
+    span.textContent = value.Cases.toString();
     span.setAttribute('class', 'recovered');
     var p = document.createElement('p');
     p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
@@ -294,7 +294,7 @@ function clearRecoveredList() {
   recoveredList.innerHTML = null;
 }
 function setTotalRecoveredByCountry(data) {
-  recoveredTotal.innerText = data[0].Cases;
+  recoveredTotal.innerText = data[0].Cases.toString();
 }
 function startLoadingAnimation() {
   deathsList.appendChild(deathSpinner);
@@ -326,20 +326,22 @@ function setupData() {
   });
 }
 function renderChart(data, labels) {
-  var ctx = $('#lineChart').getContext('2d');
-  var defaultLabel = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
-  var defaultData = [0, 10, 5, 2, 20, 30, 45];
+  var lineChart = $('#lineChart');
+  var ctx = lineChart.getContext('2d');
+  // const defaultLabel = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  // ];
+  // const defaultData = [0, 10, 5, 2, 20, 30, 45];
   Chart.defaults.global.defaultFontColor = '#f5eaea';
   Chart.defaults.global.defaultFontFamily = 'Exo 2';
-  var chart = new Chart(ctx, {
+  // const chart =
+  new Chart(ctx, {
     type: 'line',
     data: {
       labels: labels,
@@ -367,17 +369,17 @@ function setChartData(data) {
 function setTotalConfirmedNumber(data) {
   confirmedTotal.innerText = data.Countries.reduce(function (total, current) {
     return (total += current.TotalConfirmed);
-  }, 0);
+  }, 0).toString();
 }
 function setTotalDeathsByWorld(data) {
   deathsTotal.innerText = data.Countries.reduce(function (total, current) {
     return (total += current.TotalDeaths);
-  }, 0);
+  }, 0).toString();
 }
 function setTotalRecoveredByWorld(data) {
   recoveredTotal.innerText = data.Countries.reduce(function (total, current) {
     return (total += current.TotalRecovered);
-  }, 0);
+  }, 0).toString();
 }
 function setCountryRanksByConfirmedCases(data) {
   var sorted = data.Countries.sort(function (a, b) {
@@ -388,7 +390,7 @@ function setCountryRanksByConfirmedCases(data) {
     li.setAttribute('class', 'list-item flex align-center');
     li.setAttribute('id', value.Slug);
     var span = document.createElement('span');
-    span.textContent = value.TotalConfirmed;
+    span.textContent = value.TotalConfirmed.toString();
     span.setAttribute('class', 'cases');
     var p = document.createElement('p');
     p.setAttribute('class', 'country');
