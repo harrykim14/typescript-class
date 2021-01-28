@@ -37,6 +37,17 @@
     - 라이브러리 자체에 index.d.ts파일이 있다면 바로 적용됨
         > ex) axios
     - tsconfig.json 내에 typeRoots 설정을 적용하면 임의로 ./node_modules/@types 외에도 다른 폴더에서도 index.d.ts로 타입 설정 파일을 불러올 수 있다
+
+6. 타입스크립트의 strict 모드 적용하기
+    ```
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    ```
     
 
 
